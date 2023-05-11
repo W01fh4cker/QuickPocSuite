@@ -1,0 +1,2 @@
+payload: /en-US/splunkd/__raw/services/server/info/server-info?output_mode=json
+keyword: licenseKeys
