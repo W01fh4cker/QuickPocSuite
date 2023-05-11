@@ -13,6 +13,7 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 python QuickPocSuite.py -y <yaml文件地址> -l <需要批量利用的url文件>
 # 例如：python QuickPocSuite.py -y splunk-info-disclosure.yaml -l urls.txt 
 ```
+![image](https://github.com/W01fh4cker/QuickPocSuite/assets/101872898/223e0220-24c6-42de-9540-971c75a9e61d)
 
 ## 详细参数
 
