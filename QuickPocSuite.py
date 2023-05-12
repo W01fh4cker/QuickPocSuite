@@ -1,5 +1,5 @@
 import argparse
-from engine.getPoc import GetPoc
+from utils.task_manager import TaskManager
 
 def title():
     title = r"""
@@ -8,7 +8,7 @@ def title():
 | | | | | | | |/ __| |/ / | |_) / _ \ / __\___ \| | | | | __/ _ \
 | |_| | |_| | | (__|   <  |  __/ (_) | (__ ___) | |_| | | ||  __/
  \__\_\\__,_|_|\___|_|\_\ |_|   \___/ \___|____/ \__,_|_|\__\___|
-                                                    @Version: 0.0.1-beta
+                                                    @Version: 0.0.2
                                                     @Author: W01fh4cker
                                                     @Time: 2023-5-11
     """
@@ -23,9 +23,7 @@ def main():
     parser.add_argument("-o", "--output", help="the file to output the results, default: output.txt", required=False, default="output.txt")
 
     args = parser.parse_args()
-    poc = GetPoc(args.yaml, args.list, args.thread, args.output)
-    poc.get_poc_batch()
-
+    TaskManager(args.yaml, args.list, args.thread, args.output).task_apply()
 
 if __name__ == "__main__":
     main()

