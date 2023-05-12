@@ -23,13 +23,13 @@ python QuickPocSuite.py -y <yaml文件地址> -l <需要批量利用的url文件
 | | | | | | | |/ __| |/ / | |_) / _ \ / __\___ \| | | | | __/ _ \
 | |_| | |_| | | (__|   <  |  __/ (_) | (__ ___) | |_| | | ||  __/
  \__\_\\__,_|_|\___|_|\_\ |_|   \___/ \___|____/ \__,_|_|\__\___|
-                                                    @Version: 0.0.1-beta
+                                                    @Version: 0.0.2
                                                     @Author: W01fh4cker
-                                                    @Time: 2023-5-11
+                                                    @UpdateTime: 2023-5-12
     
 usage: QuickPocSuite.py [-h] [-y YAML] [-l LIST] [-t THREAD] [-o OUTPUT]
 
-QuickPocSuite v0.0.1-beta By:W01fh4cker
+QuickPocSuite v0.0.2 By:W01fh4cker
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -122,10 +122,10 @@ request:
 
 # Todo-list
 
-- 完成`poc`为`post`请求方式部分的代码；
 - 和`fofa`/`hunter`/`shodan`/`zoomeye`/`quake`等网络测绘引擎的联动；
-- 自动对完成扫描的`IP`进行分析，例如反查域名/`ASN`/`org`等。
-- ……（你们定，直接提issues，合理的都会满足）
+- 自动对完成扫描的`IP`进行分析，例如反查域名/`ASN`/`org`等；
+- 开发`poc`仓库，添加更多的`poc`；
+- ……（你们定，直接提`issues`，合理的都会满足）
 
 # 联系方式
 
